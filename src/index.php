@@ -1,6 +1,7 @@
 <?php
 
 require('./library/vendor/autoload.php');
+define('BASE_PATH', __DIR__);
 
 use Phalcon\Mvc\Micro;
 use Phalcon\Loader;
@@ -8,7 +9,7 @@ use Phalcon\Loader;
 $loader = new Loader();
 $loader->registerNamespaces(
     [
-        'Api\Handler' => './handlers'
+        'Api\Handler' => './handlers',
     ]
 );
 
@@ -17,6 +18,24 @@ $loader->register();
 $app = new Micro();
 
 $products = new Api\Handler\Products();
+$token = new Api\Handler\Token();
+$acl = new Api\Handler\Acl();
+
+$app->get(
+    '/acl',
+    [
+        $acl,
+        'buildAcl'
+    ]
+);
+
+$app->get(
+    '/bearer/{role}',
+    [
+        $token,
+        'generateToken'
+    ]
+);
 
 
 $app->get(
