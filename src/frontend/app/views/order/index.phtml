@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo ("Add Order"); ?></title>
+</head>
+
+<body class='container text-center mt-5 border'>
+    <h2 class='alert alert-success mt-4'><?php echo ("Add Order"); ?></h2>
+    </h2>
+    <!-- ------------------------------ checking message from controller ----------------- ------------>
+
+    <?php
+    if (isset($msg)) {
+        echo $msg;
+    };
+    ?>
+    <!-- -------------------------------------------Form starts ------------------------------------------------>
+
+    <?php echo $this->tag->form(['', 'class' => 'my-5','method' => 'GET']); ?>
+    <p class="row">
+        <label for="name" class='label col-2 mx-5'><?php echo ("Customer Name"); ?></label>
+        <?php echo $this->tag->textField(['customer_name', 'class' => 'form-control col-6']) ?>
+    </p>
+    <p class="row">
+        <label for="address" class='label col-2 mx-5'><?php echo ("Customer Address"); ?></label>
+        <?php echo $this->tag->textField(['customer_address', 'class' => 'form-control col-6']) ?>
+    </p>
+    <p class="row">
+        <label for="zipcode" class='label col-2 mx-5'> <?php echo ("Zipcode"); ?></label>
+        <?php echo $this->tag->textField(['zipcode', 'class' => 'form-control col-6']) ?>
+    </p>
+
+
+
+
+    <p class="row">
+        <label for="products" class='label col-2 mx-5'><?php echo ("Products"); ?></label>
+        <?php
+
+        $allproducts = array();
+        foreach ($products as $product) {
+            // print_r($product);
+            $id =  (array)($product['_id']);
+            $allproducts[$id['$oid']] = $product['product_name'];
+        }
+        // dropdown
+        echo $this->tag->select(['product', $allproducts, 'class' => 'form-control col-6 product']) ?>
+    </p>
+    <div id="actions-dropdown">
+
+    </div>
+    <p class="row">
+        <label for="quantity" class='label col-2 mx-5'><?php echo ("Quantity"); ?></label>
+        <?php echo $this->tag->textField(['quantity', 'class' => 'form-control col-6']) ?>
+    </p>
+
+
+    <p class="row">
+        <label for="token" class='label col-2 mx-5'> <?php echo ("Your Token"); ?></label>
+        <?php echo $this->tag->textField(['token', 'class' => 'form-control col-6']) ?>
+    </p>
+
+    <p>
+        <?php echo $this->tag->submitButton([("Add Order"), 'class' => 'btn  btn-primary mx-5']); ?>
+    </p>
+    <?php echo $this->tag->endForm(); ?>
+    <!-- -------------------------------------------Form starts ------------------------------------------------>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $('.product').on('click', function() {
+        id = ($('#product').val());
+        $.ajax({
+            method: "get",
+            url: "",
+            data: {
+                id: id,
+            },
+
+        }).done(function(data) {
+            console.log(data);
+            data = JSON.parse(data)
+            display(data);
+        });
+    });
+
+    //  display action dropdown
+    function display(data) {
+        html = " <p class='row '>\
+                <label for='Actions' class='label col-2 mx-5'>Variations</label>\
+                <select name='variation' id='variations' class='form-control col-6 component'>";
+        Object.keys(data.variation).forEach(key => {
+            obj = data.variation[key]
+            option = ''
+            Object.keys(obj).forEach(k => {
+                option += k + " : " + obj[k] + " ";
+                console.log(k, obj[k]);
+            });
+        });
+        html += "<option value='" + option + "'> " + option + "</option></select></p >";
+        document.getElementById("actions-dropdown").innerHTML = html;
+
+    }
+</script>
+
+</html>
