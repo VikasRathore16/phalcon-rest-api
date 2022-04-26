@@ -42,5 +42,6 @@ class User
             $postArray
         );
         $success =  $user->getInsertedCount();
+        return $success;
     }
 }

@@ -33,6 +33,9 @@ class LoginController extends Controller
             if ($user[0]->role == 'admin') {
                 $bearer = $user[0]->jwt;
                 $this->response->redirect("http://localhost:8080/frontend/admin/dashboard?bearer=$bearer");
+            }else{
+                $this->response->redirect("http://localhost:8080/frontend/index/index?bearer=$bearer");
+
             }
         }
     }
@@ -59,39 +62,9 @@ class LoginController extends Controller
         $user = $collection->find([
             'email' => $request['email'],
             'password' => $request['password']
-
         ]);
         $objects = json_decode(json_encode($user->toArray(), true));
 
         return ($objects);
-
-        // die();
-
-        // return $user;
-
-
-        // unset($this->session->user);
-        // try {
-        //     $key = "example_key";
-        //     $users = new Users($this->mongo, 'store', 'users');
-        //     $users = $users->find();
-        //     foreach ($users as $user) {
-        //         $decoded = JWT::decode($user->jwt, new Key($key, 'HS256'));
-        //         $decoded_array = (array) $decoded;
-        //         $email = $decoded_array['email'];
-        //         $password = $decoded_array['password'];
-        //         if ($email == $request['email'] && $password == $request['password']) {
-        //             $role = $decoded_array['role'];
-        //             $username = $decoded_array['username'];
-        //             $this->session->set('role', $role);
-        //             $this->session->set('username', $username);
-        //             break;
-        //         }
-        //     }
-        // } catch (\Exception $e) {
-        //     echo "Try with accessable token please !";
-        //     die;
-        // }
-        // return $this->session->get('username');
     }
 }

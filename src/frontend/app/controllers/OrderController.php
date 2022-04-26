@@ -11,6 +11,7 @@ class OrderController extends Controller
     {
         $mycurl = new Mycurl();
         $bearer = $this->request->get('bearer');
+        // die($bearer);
         $products = $mycurl->find('GET', '/products/get?bearer=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4ifQ.Sts-82E95LpNwdzaDXWChp4m-yvVLS0tQcNMTxvFrvQ');
         $this->view->products = $products;
         if ($this->request->has('id')) {
@@ -20,9 +21,8 @@ class OrderController extends Controller
             echo json_encode($product);
             die();
         }
-        if ($this->request->has('token')) {
+        if ($this->request->has('bearer')) {
             $order = $mycurl->find('POST', "/order/create?bearer=$bearer", '', $this->request->get());
-            // $this->view->response = $response->token;
         }
     }
 }

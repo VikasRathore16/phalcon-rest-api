@@ -48,7 +48,9 @@
             $allproducts[$id['$oid']] = $product['product_name'];
         }
         // dropdown
-        echo $this->tag->select(['product', $allproducts, 'class' => 'form-control col-6 product']) ?>
+        echo $this->tag->select(['product', $allproducts, 'class' => 'form-control col-6 product']) 
+        // $this->tag->setdefault($allproducts[''], )
+        ?>
     </p>
     <div id="actions-dropdown">
 
@@ -61,7 +63,7 @@
 
     <p class="row">
         <label for="token" class='label col-2 mx-5'> <?php echo ("Your Token"); ?></label>
-        <?php echo $this->tag->textField(['token', 'class' => 'form-control col-6']) ?>
+        <?php echo $this->tag->textField(['bearer', 'class' => 'form-control col-6']) ?>
     </p>
 
     <p>

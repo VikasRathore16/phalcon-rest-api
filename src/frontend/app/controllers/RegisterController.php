@@ -11,7 +11,7 @@ class RegisterController extends Controller
             $role = $this->request->getPost('role');
             $mycurl = new Mycurl();
             $response = $mycurl->find('GET', "/bearer/$role");
-            $user = $mycurl->find('POST', "/user/addUser", '', $this->request->getPost());
+            $user = $mycurl->find('POST', "/user/addUser?bearer=$response->token", '', $this->request->getPost());
             $this->view->response = $response->token;
         }
     }
