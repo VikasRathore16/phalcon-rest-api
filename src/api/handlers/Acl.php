@@ -27,12 +27,13 @@ class Acl
         );
 
         $acl->allow('admin', '*', '*');
+        $acl->allow('user', 'index', 'index');
+
 
         file_put_contents(
             $aclFile,
             serialize($acl)
         );
         echo "Build Successfully";
-        // echo  $acl->isallowed('manager', 'index', 'index');
     }
 }

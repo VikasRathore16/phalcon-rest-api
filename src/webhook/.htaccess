@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteRule ^$ webhook/public/   [L]
+    RewriteRule   ^((?s).*)$ webhook/public/index.php?_url=/$1 [QSA,L]
+</IfModule>

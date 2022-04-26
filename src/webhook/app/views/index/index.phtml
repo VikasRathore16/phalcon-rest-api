@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo ("Add Order"); ?></title>
+</head>
+
+<body class='container text-center mt-5 border'>
+    <h2 class='alert alert-success mt-4'><?php echo ("Webhook"); ?></h2>
+    </h2>
+    <!-- ------------------------------ checking message from controller ----------------- ------------>
+
+    <?php
+    if (isset($msg)) {
+        echo $msg;
+    };
+    ?>
+    <!-- -------------------------------------------Form starts ------------------------------------------------>
+
+    <?php echo $this->tag->form(['', 'class' => 'my-5','method' => 'GET']); ?>
+    <p class="row">
+        <label for="name" class='label col-2 mx-5'><?php echo ("Webhook Name"); ?></label>
+        <?php echo $this->tag->textField(['webhook_name', 'class' => 'form-control col-6']) ?>
+    </p>
+    <p class="row">
+        <label for="events" class='label col-2 mx-5'><?php echo ("Events"); ?></label>
+        <?php echo $this->tag->textField(['events', 'class' => 'form-control col-6']) ?>
+    </p>
+    <p class="row">
+        <label for="key" class='label col-2 mx-5'> <?php echo ("Key"); ?></label>
+        <?php echo $this->tag->textField(['key', 'class' => 'form-control col-6']) ?>
+    </p>
+    <p>
+        <?php echo $this->tag->submitButton([("Add"), 'class' => 'btn  btn-primary mx-5']); ?>
+    </p>
+    <?php echo $this->tag->endForm(); ?>
+    <!-- -------------------------------------------Form starts ------------------------------------------------>
+
+</body>
+
+</html>

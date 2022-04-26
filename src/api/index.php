@@ -29,7 +29,7 @@ $orders = new Api\Handler\Orders();
 
 //-------------------------------------------------acl routes-----------------------------------------------------
 $app->get(
-    '/acl',
+    '/api/acl',
     [
         $acl,
         'buildAcl'
@@ -125,7 +125,7 @@ $app->before(
     function () use ($app) {
         $url = explode('/', $_SERVER['REQUEST_URI']);
 
-        if ($url[2] == 'bearer') {
+        if ($url[2] == 'bearer' || $url[2] == 'acl') {
             return;
         }
 
