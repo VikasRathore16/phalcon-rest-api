@@ -1,10 +1,8 @@
 <?php
 
-use Phalcon\Mvc\Model;
+use MongoDB\Collection;
 
-class Users extends Model
+class Users extends Collection
 {
-    public $id;
-    public $name;
-    public $email;
+
 }

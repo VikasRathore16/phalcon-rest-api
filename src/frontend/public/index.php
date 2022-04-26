@@ -17,6 +17,11 @@ use Phalcon\Events\Event;
 use Phalcon\Events\Manager as EventsManager;
 
 
+use \Phalcon\Debug;
+
+$debug = new Debug();
+
+$debug->listen();
 
 
 // Define some absolute path constants to aid in locating resources
@@ -66,7 +71,7 @@ $loader->registerDirs(
 $loader->registerNamespaces(
     [
         'App\Components' => APP_PATH . '/components',
-        // 'App\Listeners'  => APP_PATH . '/listeners',
+        'App\Listeners'  => APP_PATH . '/listeners',
     ]
 );
 
@@ -96,6 +101,11 @@ $container->set(
         return $url;
     }
 );
+$profiler = new \Fabfuel\Prophiler\Profiler();
+$toolbar = new \Fabfuel\Prophiler\Toolbar($profiler);
+$toolbar->addDataCollector(new \Fabfuel\Prophiler\DataCollector\Request());
+echo $toolbar->render();
+
 
 $container->set(
     'config',
@@ -103,10 +113,6 @@ $container->set(
     true
 );
 
-// $container->set(
-//     'logger',
-//     $logger,
-// );
 
 
 //Event Mangement -----------------------------------------start ------------------------------------------------------
@@ -129,35 +135,6 @@ $container->set(
         return $connection;
     }
 );
-
-// $eventsManager->attach(
-//     'notification',
-//     new \App\Listeners\NotificationListeners()
-// );
-
-
-// $eventsManager->attach(
-//     'db:afterQuery',
-//     function (Event $event, $connection) use ($logger) {
-//         // die('db');
-//         $logger->error($connection->getSQLStatement());
-//     }
-// );
-
-
-// $eventsManager->attach(
-//     'application:beforeHandleRequest',
-//     new \App\Listeners\NotificationListeners()
-// );
-
-// $container->set(
-//     'locale',
-//     (new \App\Components\Locale())->getTranslator()
-// );
-// $container->set(
-//     'EventsManager',
-//     $eventsManager,
-// );
 
 //Event Mangement -----------------------------------------ends ------------------------------------------------------
 

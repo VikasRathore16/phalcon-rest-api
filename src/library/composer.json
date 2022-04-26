@@ -3,6 +3,7 @@
         "guzzlehttp/guzzle": "^7.0",
         "mongodb/mongodb": "^1.12",
         "firebase/php-jwt": "^6.1",
-        "paragonie/sodium_compat": "^1.17"
+        "paragonie/sodium_compat": "^1.17",
+        "fabfuel/prophiler": "~1.0"
     }
 }

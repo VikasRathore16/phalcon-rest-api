@@ -11,6 +11,7 @@ class AdminController extends Controller
     }
     public function dashboardAction()
     {
+      
         $Client = new Client("mongodb+srv://cluster0.gbzl3.mongodb.net/myFirstDatabase", array("username" => 'root', "password" => "Vikas@1998"));
         $collection = $Client->store->orders;
         $orders = $collection->find();

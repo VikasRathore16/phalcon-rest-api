@@ -18,11 +18,11 @@ class Middleware
             $decoded = JWT::decode($bearer, new Key($key, 'HS256'));
             $decoded_array = (array) $decoded;
             $role = $decoded_array['role'];
-            if (!$role || true !== $acl->isAllowed($role, $parts[2], $parts[3])) {
+            // if (!$role || true !== $acl->isAllowed($role, $parts[2], $parts[3])) {
 
-                echo '<h2>Access denied :(</h2>';
-                die;
-            }
+            //     echo '<h2>Access denied :(</h2>';
+            //     die;
+            // }
             return $role;
         } catch (\Exception $e) {
             echo "Try with accessable token please !";
