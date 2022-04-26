@@ -124,13 +124,17 @@ $app->put(
 $app->before(
     function () use ($app) {
         $url = explode('/', $_SERVER['REQUEST_URI']);
-        // print_r($url);
-        // die;
+
         if ($url[2] == 'bearer') {
             return;
         }
+
+        // $middleware = new \Api\Handler\Middleware;
+
         $key = $app->request->getQuery('bearer');
         if (isset($key)) {
+            $middleware = new \Api\Handler\Middleware;
+            $middleware->check($key);
         } else {
             die("Please Provide Token");
         }

@@ -10,7 +10,8 @@ class OrderController extends Controller
     public function indexAction()
     {
         $mycurl = new Mycurl();
-        $products = $mycurl->find('GET', '/products/get');
+        $bearer = $this->request->get('bearer');
+        $products = $mycurl->find('GET', '/products/get?bearer=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiYWRtaW4ifQ.Sts-82E95LpNwdzaDXWChp4m-yvVLS0tQcNMTxvFrvQ');
         $this->view->products = $products;
         if ($this->request->has('id')) {
             $Client = new Client("mongodb+srv://cluster0.gbzl3.mongodb.net/myFirstDatabase", array("username" => 'root', "password" => "Vikas@1998"));
@@ -20,7 +21,7 @@ class OrderController extends Controller
             die();
         }
         if ($this->request->has('token')) {
-            $order = $mycurl->find('POST', "/order/create", '', $this->request->get());
+            $order = $mycurl->find('POST', "/order/create?bearer=$bearer", '', $this->request->get());
             // $this->view->response = $response->token;
         }
     }
