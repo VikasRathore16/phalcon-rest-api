@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Api\Handler\Products" namespace="Api\Handler" name="Products" abstract="false" final="false" start="7" end="78">
+  <file path="src/api/handlers" file="Products.php" realpath="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api/handlers/Products.php" size="2751" time="2022-04-28T12:33:32+00:00" unixtime="1651149212" sha1="244b0ff9d366d3ec818873d59b82791c2d397076" relative="handlers/Products.php"/>
+  <member name="collection" visibility="private" static="false" line="9"/>
+  <constructor name="__construct" start="11" end="15" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="pages" start="17" end="22" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+    <parameter name="per_page" byreference="false" type="string"/>
+  </method>
+  <method name="perPage" start="24" end="34" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+    <parameter name="per_page" byreference="false" type="string" default="&quot;&quot;"/>
+    <parameter name="page" byreference="false" type="string" default="''"/>
+  </method>
+  <method name="get" start="35" end="59" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+    <inline>
+      <comment value="$options = [" line="40"/>
+      <comment value="&quot;limit&quot; =&gt; (int)$per_page," line="41"/>
+      <comment value="&quot;skip&quot; =&gt; (int)$page" line="42"/>
+      <comment value="];" line="43"/>
+      <comment value="return ($per_page === &quot;&quot; &amp;&amp; $page === '') ? json_encode((object)($this-&gt;collection-&gt;find()-&gt;toArray())) : (($page === '') ? json_encode((object)($this-&gt;collection-&gt;find([], ['limit' =&gt; (int)$per_page])-&gt;toArray())) : json_encode((object)($this-&gt;collection-&gt;find([], $options)-&gt;toArray())));" line="44"/>
+      <comment value="return $result;" line="45"/>
+      <comment value="if ($per_page === &quot;&quot; &amp;&amp; $page === '') {" line="46"/>
+      <comment value="return json_encode((object)($this-&gt;collection-&gt;find()-&gt;toArray()));" line="47"/>
+      <comment value="}" line="48"/>
+      <comment value="if ($page === '') {" line="49"/>
+      <comment value="return json_encode((object)($this-&gt;collection-&gt;find([], ['limit' =&gt; (int)$per_page])-&gt;toArray()));" line="50"/>
+      <comment value="}" line="51"/>
+      <comment value="$options = [" line="53"/>
+      <comment value="&quot;limit&quot; =&gt; (int)$per_page," line="54"/>
+      <comment value="&quot;skip&quot; =&gt; (int)$page" line="55"/>
+      <comment value="];" line="56"/>
+      <comment value="return json_encode((object)($this-&gt;collection-&gt;find([], $options)-&gt;toArray()));" line="58"/>
+    </inline>
+  </method>
+  <method name="search" start="61" end="77" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+    <parameter name="keywords" byreference="false" type="string" default="&quot;&quot;"/>
+    <inline>
+      <comment value="print_r($params);" line="74"/>
+    </inline>
+  </method>
+</class>

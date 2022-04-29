@@ -101,10 +101,10 @@ $container->set(
         return $url;
     }
 );
-$profiler = new \Fabfuel\Prophiler\Profiler();
-$toolbar = new \Fabfuel\Prophiler\Toolbar($profiler);
-$toolbar->addDataCollector(new \Fabfuel\Prophiler\DataCollector\Request());
-echo $toolbar->render();
+// $profiler = new Fabfuel\Prophiler\Profiler();
+// $toolbar = new Fabfuel\Prophiler\Toolbar($profiler);
+// $toolbar->addDataCollector(new Fabfuel\Prophiler\DataCollector\Request());
+// echo $toolbar->render();
 
 
 $container->set(
@@ -121,8 +121,8 @@ $eventsManager = new EventsManager();
 
 $container->set(
     'db',
-    function () use ($eventsManager) {
-        $config = $this->get('config');
+    function () use ($eventsManager , $container) {
+        $config = $container->get('config');
         $connection = new Mysql(
             [
                 'host'     => $config->db->host,

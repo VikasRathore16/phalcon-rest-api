@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api">
+  <namespace name="Api\Handler">
+    <class name="Products" src="handlers/Products.php" xml="classes/Api_Handler_Products.xml"/>
+    <class name="Orders" src="handlers/Orders.php" xml="classes/Api_Handler_Orders.xml"/>
+    <class name="Token" src="handlers/Token.php" xml="classes/Api_Handler_Token.xml"/>
+    <class name="Acl" src="handlers/Acl.php" xml="classes/Api_Handler_Acl.xml"/>
+    <class name="User" src="handlers/User.php" xml="classes/Api_Handler_User.xml"/>
+    <class name="Middleware" src="handlers/Middleware.php" xml="classes/Api_Handler_Middleware.xml"/>
+  </namespace>
+</index>

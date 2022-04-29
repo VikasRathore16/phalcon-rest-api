@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Api\Handler\Acl" namespace="Api\Handler" name="Acl" abstract="false" final="false" start="7" end="34">
+  <file path="src/api/handlers" file="Acl.php" realpath="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api/handlers/Acl.php" size="665" time="2022-04-28T12:30:28+00:00" unixtime="1651149028" sha1="a83223465367c5d92d7f49ce9a22c74681551da4" relative="handlers/Acl.php"/>
+  <method name="buildAcl" start="9" end="33" abstract="false" final="false" static="false" visibility="public">
+    <return type="void" nullable="false"/>
+  </method>
+</class>

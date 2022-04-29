@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Api\Handler\Token" namespace="Api\Handler" name="Token" abstract="false" final="false" start="8" end="74">
+  <file path="src/api/handlers" file="Token.php" realpath="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api/handlers/Token.php" size="2332" time="2022-04-28T12:29:41+00:00" unixtime="1651148981" sha1="2070b1d665000cf59b7eeee8f49ce34d65639542" relative="handlers/Token.php"/>
+  <member name="collection" visibility="public" static="false" line="10"/>
+  <constructor name="__construct" start="12" end="22" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="generateToken" start="24" end="39" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+    <parameter name="role" byreference="false" type="object">
+      <type full="Api\Handler\mixed" namespace="Api\Handler" name="mixed"/>
+    </parameter>
+    <inline>
+      <comment value="ecoding array" line="30"/>
+    </inline>
+  </method>
+</class>

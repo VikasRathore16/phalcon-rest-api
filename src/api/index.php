@@ -1,10 +1,12 @@
 <?php
 
-require('../library/vendor/autoload.php');
+declare(strict_types=1);
+
+require '../library/vendor/autoload.php';
 define('BASE_PATH', __DIR__);
 
-use Phalcon\Mvc\Micro;
 use Phalcon\Loader;
+use Phalcon\Mvc\Micro;
 
 $loader = new Loader();
 $loader->registerNamespaces(
@@ -32,7 +34,7 @@ $app->get(
     '/api/acl',
     [
         $acl,
-        'buildAcl'
+        'buildAcl',
     ]
 );
 
@@ -45,7 +47,7 @@ $app->get(
     '/api/getbearer',
     [
         $token,
-        'getBearerToken'
+        'getBearerToken',
     ]
 );
 
@@ -53,7 +55,7 @@ $app->get(
     '/api/bearer/{role}',
     [
         $token,
-        'generateToken'
+        'generateToken',
     ]
 );
 
@@ -64,7 +66,7 @@ $app->get(
     '/api/products/search/{keyword}',
     [
         $products,
-        'search'
+        'search',
     ]
 );
 
@@ -72,7 +74,7 @@ $app->get(
     '/api/products/get',
     [
         $products,
-        'get'
+        'get',
     ]
 );
 
@@ -80,7 +82,7 @@ $app->get(
     '/api/products/get/{per_page}',
     [
         $products,
-        'get'
+        'pages',
     ]
 );
 
@@ -88,26 +90,26 @@ $app->get(
     '/api/products/get/{per_page}/{page}',
     [
         $products,
-        'get'
+        'perPage'
     ]
 );
 
-//-------------------------------------------------user routes-----------------------------------------------------
+//------------------------------------user routes---------------------------------------
 $app->post(
     '/api/user/addUser',
     [
         $user,
-        'addUser'
+        'addUser',
     ]
 );
 
 
-//-------------------------------------------------user routes-----------------------------------------------------
+//-----------------------------------user routes------------------------------
 $app->post(
     '/api/order/create',
     [
         $orders,
-        'create'
+        'create',
     ]
 );
 
@@ -115,25 +117,21 @@ $app->put(
     '/api/order/update',
     [
         $orders,
-        'update'
+        'update',
     ]
 );
 
-
-//-------------------------------------------------ROUTES ENDS-----------------------------------------------------
+//-------------------------------------ROUTES ENDS------------------------------------
 $app->before(
-    function () use ($app) {
+    static function () use ($app): void {
         $url = explode('/', $_SERVER['REQUEST_URI']);
 
-        if ($url[2] == 'bearer' || $url[2] == 'acl') {
+        if ($url[2] === 'bearer' || $url[2] === 'acl') {
             return;
         }
-
-        // $middleware = new \Api\Handler\Middleware;
-
         $key = $app->request->getQuery('bearer');
         if (isset($key)) {
-            $middleware = new \Api\Handler\Middleware;
+            $middleware = new \Api\Handler\Middleware();
             $middleware->check($key);
         } else {
             die("Please Provide Token");
@@ -142,7 +140,7 @@ $app->before(
 );
 
 $app->notFound(
-    function () use ($app) {
+    static function () use ($app): void {
         $app->response->setStatusCode(404, 'Not Found');
         $app->response->sendHeaders();
         $message = 'Nothing to see here. Move along....';

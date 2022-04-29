@@ -1,31 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Api\Handler;
 
 use MongoDB\Client;
-use Firebase\JWT\JWT;
-use Api\Handler\Token;
 use Phalcon\Http\Request;
 
 class User
 {
-    public $collection;
+    public object $collection;
 
     public function __construct()
     {
-        $Client = new Client("mongodb+srv://cluster0.gbzl3.mongodb.net/myFirstDatabase", array("username" => 'root', "password" => "Vikas@1998"));
+        $Client = new Client(
+            "mongodb+srv://cluster0.gbzl3.mongodb.net/myFirstDatabase",
+            [
+                "username" => 'root',
+                "password" => "Vikas@1998"
+            ]
+        );
         $this->collection = $Client->store->users;
     }
 
-
-    public function index()
-    {
-
-        $this->view->users = $this->collection->find();
-    }
-
-
-    public function addUser()
+    public function addUser(): ?int
     {
         $request = new Request();
         $token = new Token();
@@ -36,12 +34,12 @@ class User
             "role" => $request->getPost('role'),
         ];
         $jwt = $token->generateToken($postArray);
-        $postArray['jwt'] = (json_decode($jwt))->token;
+        $jwt = json_decode($jwt);
+        $postArray['jwt'] = $jwt->token;
 
-        $user =  $this->collection->insertOne(
+        $user = $this->collection->insertOne(
             $postArray
         );
-        $success =  $user->getInsertedCount();
-        return $success;
+        return  $user->getInsertedCount();
     }
 }

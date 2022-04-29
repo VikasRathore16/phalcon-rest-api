@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Api\Handler\User" namespace="Api\Handler" name="User" abstract="false" final="false" start="10" end="45">
+  <file path="src/api/handlers" file="User.php" realpath="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api/handlers/User.php" size="1080" time="2022-04-28T12:32:45+00:00" unixtime="1651149165" sha1="5f780aaef1203a05ad85ed67be3c8263e332a92c" relative="handlers/User.php"/>
+  <member name="collection" visibility="public" static="false" line="12"/>
+  <constructor name="__construct" start="14" end="24" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="addUser" start="26" end="44" abstract="false" final="false" static="false" visibility="public">
+    <return type="int" nullable="true"/>
+  </method>
+</class>

@@ -9,7 +9,7 @@ use Phalcon\Escaper;
  */
 class Myescaper
 {
-    public $escaper;
+    public object $escaper;
 
     /**
      * construct function
@@ -23,17 +23,16 @@ class Myescaper
     /**
      * santize function
      * escape all html characters from array
-     * @param [array] $request
-     * @return void
+     * @param (array) $request
+     * @return array
      */
-    public function santize($request)
+    public function santize(array $request): ?array
     {
         $arr = array();
         foreach ($request as $key => $value) {
-
             $arr[$key] = $this->escaper->escapeHtml($value);
 
-            if ($value == '') {
+            if ($value === '') {
                 $arr[$key] = '';
             }
         }

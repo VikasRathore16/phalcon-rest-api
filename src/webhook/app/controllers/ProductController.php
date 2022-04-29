@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\Mvc\Controller;
-use MongoDB\Client;
 use MongoDB\BSON\ObjectID;
 
 class ProductController extends Controller
@@ -24,48 +23,46 @@ class ProductController extends Controller
      */
     public function addProductAction()
     {
-        if ($this->request->has('product_name')) {
-            $newProduct = new Products($this->mongo, 'store', 'products');
-            $myescaper = new \App\Components\Myescaper();
-            $myescaper = $myescaper->santize($this->request->get());
-            $count = $myescaper['count'];
-            $variation_count = $myescaper['variation_count'];
+        $newProduct = new Products($this->mongo, 'store', 'products');
+        $myescaper = new \App\Components\Myescaper();
+        $myescaper = $myescaper->santize($this->request->get());
+        $count = $myescaper['count'];
+        $variation_count = $myescaper['variation_count'];
 
-            $additional_field = [];
-            $variation_field = [];
-            for ($i = 1; $i <= $count; $i++) {
-                $label = $myescaper['label' . $i];
-                $value = $myescaper['value' . $i];
+        $additional_field = [];
+        $variation_field = [];
+        for ($i = 1; $i <= $count; $i++) {
+            $label = $myescaper['label' . $i];
+            $value = $myescaper['value' . $i];
 
-                unset($myescaper['label' . $i]);
-                unset($myescaper['value' . $i]);
-                unset($myescaper['count']);
-                $additional_field[$label] = $value;
-            }
-            for ($i = 1; $i <= $variation_count; $i++) {
-                $label = $myescaper['variation_label' . $i];
-                $value = $myescaper['variation_value' . $i];
-                $price = $myescaper['variation_price' . $i];
-                unset($myescaper['variation_label' . $i]);
-                unset($myescaper['variation_value' . $i]);
-                unset($myescaper['variation_price' . $i]);
-                unset($myescaper['variation_count']);
-                $variation_field[$i] = [
-                    $label => $value,
-                    'price' => $price
-                ];
-            }
-            $myescaper += ['variation' => $variation_field];
-            $myescaper += ['additional' => $additional_field];
+            unset($myescaper['label' . $i]);
+            unset($myescaper['value' . $i]);
+            unset($myescaper['count']);
+            $additional_field[$label] = $value;
+        }
+        for ($i = 1; $i <= $variation_count; $i++) {
+            $label = $myescaper['variation_label' . $i];
+            $value = $myescaper['variation_value' . $i];
+            $price = $myescaper['variation_price' . $i];
+            unset($myescaper['variation_label' . $i]);
+            unset($myescaper['variation_value' . $i]);
+            unset($myescaper['variation_price' . $i]);
+            unset($myescaper['variation_count']);
+            $variation_field[$i] = [
+                $label => $value,
+                'price' => $price
+            ];
+        }
+        $myescaper += ['variation' => $variation_field];
+        $myescaper += ['additional' => $additional_field];
 
 
-            $newProduct = $newProduct->insertOne(
-                $myescaper,
-            );
-            if ($newProduct->getInsertedCount()) {
-                $eventsManager = $this->di->get('EventsManager');
-                $eventsManager->fire('notification:createhook', (object)$myescaper);
-            }
+        $newProduct = $newProduct->insertOne(
+            $myescaper,
+        );
+        if ($newProduct->getInsertedCount()) {
+            $eventsManager = $this->di->get('EventsManager');
+            $eventsManager->fire('notification:createhook', (object)$myescaper);
         }
     }
 

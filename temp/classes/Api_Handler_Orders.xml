@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Api\Handler\Orders" namespace="Api\Handler" name="Orders" abstract="false" final="false" start="9" end="53">
+  <file path="src/api/handlers" file="Orders.php" realpath="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api/handlers/Orders.php" size="1502" time="2022-04-28T12:31:15+00:00" unixtime="1651149075" sha1="4bd289265d7ac53e7eec2c9e37c3284b5ad17311" relative="handlers/Orders.php"/>
+  <member name="collection" visibility="public" static="false" line="11"/>
+  <constructor name="__construct" start="13" end="17" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="create" start="19" end="37" abstract="false" final="false" static="false" visibility="public">
+    <return type="void" nullable="false"/>
+    <inline>
+      <comment value="$token = new Token();" line="22"/>
+      <comment value="$jwt = $token-&gt;generateToken($postArray);" line="31"/>
+      <comment value="$postArray['jwt'] = (json_decode($jwt))-&gt;token;" line="32"/>
+    </inline>
+  </method>
+  <method name="update" start="39" end="52" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+  </method>
+</class>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="Api\Handler\Middleware" namespace="Api\Handler" name="Middleware" abstract="false" final="false" start="10" end="33">
+  <file path="src/api/handlers" file="Middleware.php" realpath="/home/cedcoss/Desktop/Classes/phalcon-rest-api/src/api/handlers/Middleware.php" size="906" time="2022-04-28T12:20:49+00:00" unixtime="1651148449" sha1="df97960263764e8cb2619e3be4127a422d4b740c" relative="handlers/Middleware.php"/>
+  <method name="check" start="12" end="32" abstract="false" final="false" static="false" visibility="public">
+    <return type="string" nullable="true"/>
+    <parameter name="bearer" byreference="false" type="string"/>
+    <inline>
+      <comment value="$aclFile = BASE_PATH . '/security/acl.cache';" line="14"/>
+      <comment value="$parts = explode('/', $url['path']);" line="16"/>
+      <comment value="$acl = unserialize(file_get_contents($aclFile));" line="17"/>
+    </inline>
+  </method>
+</class>

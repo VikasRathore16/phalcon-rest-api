@@ -7,7 +7,14 @@ use MongoDB\Client;
 
 class OrderController extends Controller
 {
-    public function indexAction()
+
+    // public function __construct()
+    // {
+    //     $controller = Controller();
+    //     $this->view = $controller->view();
+    // }
+
+    public function indexAction(): void
     {
         $mycurl = new Mycurl();
         $bearer = $this->request->get('bearer');
@@ -19,10 +26,10 @@ class OrderController extends Controller
             $product = $Client->store->product;
             $product = $product->findOne(['_id' => new ObjectID((string) $this->request->get('id'))]);
             echo json_encode($product);
-            die();
+            die;
         }
         if ($this->request->has('bearer')) {
-            $order = $mycurl->find('POST', "/order/create?bearer=$bearer", '', $this->request->get());
+            $mycurl->find('POST', "/order/create?bearer=${bearer}", '', $this->request->get());
         }
     }
 }

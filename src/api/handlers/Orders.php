@@ -8,7 +8,7 @@ use Phalcon\Http\Request;
 
 class Orders
 {
-    public $collection;
+    public object $collection;
 
     public function __construct()
     {
@@ -16,10 +16,10 @@ class Orders
         $this->collection = $Client->store->orders;
     }
 
-    public function create()
+    public function create(): void
     {
         $request = new Request();
-        $token = new Token();
+        // $token = new Token();
         $postArray = [
             "customer_name" => $request->getPost('customer_name'),
             "customer_address" => $request->getPost('customer_address'),
@@ -31,21 +31,20 @@ class Orders
         // $jwt = $token->generateToken($postArray);
         // $postArray['jwt'] = (json_decode($jwt))->token;
 
-        $order =  $this->collection->insertOne(
+        $this->collection->insertOne(
             $postArray
         );
-        $success =  $order->getInsertedCount();
     }
 
-    public function update()
+    public function update(): ?string
     {
         $request = new Request();
-        $order = $this->collection->updateOne(
+        $this->collection->updateOne(
             ['_id' => new ObjectID((string) $request->get('id'))],
             [
                 '$set' => [
                     'Status' => $request->get('status'),
-                    'Status_change_date' =>  date('Y-m-d')
+                    'Status_change_date' => date('Y-m-d')
                 ]
             ]
         );

@@ -26,7 +26,7 @@ class Myescaper
      * @param [array] $request
      * @return void
      */
-    public function santize($request)
+    public function santize($request): ? array
     {
         $arr = array();
         foreach ($request as $key => $value) {

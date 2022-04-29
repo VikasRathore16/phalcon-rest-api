@@ -6,10 +6,10 @@ use MongoDB\Client;
 
 class AdminController extends Controller
 {
-    public function indexAction()
+    public function indexAction(): void
     {
     }
-    public function dashboardAction()
+    public function dashboardAction(): void
     {
       
         $Client = new Client("mongodb+srv://cluster0.gbzl3.mongodb.net/myFirstDatabase", array("username" => 'root', "password" => "Vikas@1998"));

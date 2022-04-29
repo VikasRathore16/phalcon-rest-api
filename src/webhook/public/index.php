@@ -127,8 +127,8 @@ $eventsManager = new EventsManager();
 
 $container->set(
     'db',
-    function () use ($eventsManager) {
-        $config = $this->get('config');
+    function () use ($eventsManager, $container) {
+        $config = $container->get('config');
         $connection = new Mysql(
             [
                 'host'     => $config->db->host,
